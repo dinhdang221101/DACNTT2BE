@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "./";
 Directory.SetCurrentDirectory(basePath);
+
 builder.Services.AddSingleton<SqlStatementsManagerClass>(new SqlStatementsManagerClass(basePath));
 builder.Services.AddSingleton<ExcuteSqlClass>(provider =>
 {
@@ -19,6 +20,7 @@ builder.Services.AddSingleton<ExcuteSqlClass>(provider =>
     var connString = config.GetConnectionString("DefaultConnection");
     return new ExcuteSqlClass(connString);
 });
+
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -29,30 +31,33 @@ builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
 builder.Services.AddScoped<IPromotionService, PromotionService>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy.AllowAnyOrigin() 
+              .AllowAnyHeader() 
+              .AllowAnyMethod(); 
     });
 });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors();
 }
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-
