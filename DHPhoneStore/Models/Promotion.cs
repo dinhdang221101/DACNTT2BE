@@ -9,5 +9,16 @@ namespace DHPhoneStore.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
+
+    public class AddProductsPromotion
+    {
+        public int PromotionID { get; set; }
+        public List<int>? ProductIDs { get; set; }
+    }
+    public class ListAddProductPromotion
+    {
+        public int PromotionID { get; set; }
+        public int ProductID { get; set; }
+    }
 }
 

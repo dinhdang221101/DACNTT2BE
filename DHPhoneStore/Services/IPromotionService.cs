@@ -9,5 +9,6 @@ namespace DHPhoneStore.Services
         Task<ResponseBase> PostPromotionAsync(Promotion promotion);
         Task<ResponseBase> UpdatePromotionAsync(Promotion promotion);
         Task<ResponseBase> DeletePromotionAsync(int id);
+        Task<ResponseBase> AddProductsAsync(AddProductsPromotion req);
     }
 }

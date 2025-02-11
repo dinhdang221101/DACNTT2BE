@@ -72,4 +72,10 @@
         WHERE productName LIKE CONCAT('%', @query, '%')
         LIMIT @page, @pageSize;
     </Statement>
+    <Statement id="list_add_to_promotion">
+        SELECT p.*, pp.PromotionID
+        FROM Products p
+        LEFT JOIN ProductPromotions pp ON p.ProductID = pp.ProductID
+        WHERE pp.ProductID IS NULL OR pp.PromotionID = @id;
+    </Statement>
 </Statements>

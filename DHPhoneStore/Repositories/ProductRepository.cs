@@ -71,6 +71,12 @@ namespace DHPhoneStore.Repositories
             var data = await _excuteSqlClass.StatementQueryAsync<ProductSale>("get_product_by_search", new { page = (page - 1) * pageSize, pageSize, query });
             return data;
         }
+
+        public async Task<object?> ListAddToPromotionAsync(string id)
+        {
+            var data = await _excuteSqlClass.StatementQueryAsync<ProductPromotion>("list_add_to_promotion", new {id});
+            return data;
+        }
     }
 }
 

@@ -131,8 +131,8 @@ namespace DHPhoneStore.Controllers
                     { "vnp_Locale", "vn" },
                     { "vnp_OrderInfo", "thanhtoan" },
                     { "vnp_OrderType", "other" },
-                    //{ "vnp_ReturnUrl", "http://localhost:5173/payment-result" },
-                    { "vnp_ReturnUrl", "https://dacntt2-u7sm.onrender.com/payment-result" },
+                    { "vnp_ReturnUrl", "http://localhost:5173/payment-result" },
+                    //{ "vnp_ReturnUrl", "https://dacntt2-u7sm.onrender.com/payment-result" },
                     { "vnp_ExpireDate", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss") },
                     { "vnp_TxnRef", request.OrderID.ToString() + "_" + DateTime.Now.ToString("yyyyMMddHHmmss")},
                 };

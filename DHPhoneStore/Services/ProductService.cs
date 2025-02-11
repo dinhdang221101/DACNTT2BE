@@ -74,6 +74,13 @@ namespace DHPhoneStore.Services
             response.Data = await _repository.SearchAsync(page, pageSize, query);
             return response;
         }
+
+        public async Task<ResponseBase> ListAddToPromotionAsync(string id)
+        {
+            var response = new ResponseBase();
+            response.Data = await _repository.ListAddToPromotionAsync(id);
+            return response;
+        }
     }
 }
 

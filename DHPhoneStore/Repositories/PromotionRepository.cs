@@ -44,6 +44,17 @@ namespace DHPhoneStore.Repositories
             var data = await _excuteSqlClass.QueryAsync<int>(sql, new { PromotionID = id });
             return data.SingleOrDefault();
         }
+
+        public async Task<object?> AddProductsAsync(AddProductsPromotion req)
+        {
+            List<ListAddProductPromotion> list = new List<ListAddProductPromotion>();
+            await _excuteSqlClass.StatementExecuteAsync("delete_product_to_promotion", new {id = req.PromotionID});
+            foreach(int id in req.ProductIDs)
+            {
+                await _excuteSqlClass.StatementQueryAsync<Promotion>("add_product_to_promotion", new { ProductID = id, PromotionID = req.PromotionID});
+            }
+            return 1;
+        }
     }
 }
 

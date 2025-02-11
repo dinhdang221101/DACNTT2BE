@@ -77,7 +77,13 @@ namespace DHPhoneStore.Controllers
             var item = await _service.GetReviewsByProductIdAsync(id);
             return Ok(item);
         }
-        
+
+        [HttpGet("AddToPromotion/{id}")]
+        public async Task<IActionResult> ListAddToPromotion(string id)
+        {
+            var item = await _service.ListAddToPromotionAsync(id);
+            return Ok(item);
+        }
     }
 }
 

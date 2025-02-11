@@ -1,0 +1,60 @@
+﻿<Properties StartupConfiguration="{EB939F47-9918-4B4F-B9AF-8718B3EFB433}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DHPhoneStore/Controllers/PromotionController.cs">
+    <Files>
+      <File FileName="DHPhoneStore/Repositories/ProductRepository.cs" Line="77" Column="106" />
+      <File FileName="DHPhoneStore/ExcuteSqlClass.cs" />
+      <File FileName="DHPhoneStore/Statements/ProductStatement.xml" Line="68" Column="22" />
+      <File FileName="DHPhoneStore/Controllers/ProductController.cs" Line="84" Column="52" />
+      <File FileName="DHPhoneStore/Services/IProductService.cs" Line="14" Column="64" />
+      <File FileName="DHPhoneStore/Services/ProductService.cs" Line="80" Column="47" />
+      <File FileName="DHPhoneStore/Repositories/IProductRepository.cs" />
+      <File FileName="DHPhoneStore/Controllers/UserController.cs" Line="132" Column="54" />
+      <File FileName="DHPhoneStore/Services/IUserService.cs" />
+      <File FileName="DHPhoneStore/Services/ICategoryService.cs" />
+      <File FileName="DHPhoneStore/Models/User.cs" />
+      <File FileName="DHPhoneStore/Models/Product.cs" Line="17" Column="34" />
+      <File FileName="DHPhoneStore/Services/UserService.cs" Line="81" Column="71" />
+      <File FileName="DHPhoneStore/Repositories/UserRepository.cs" Line="23" Column="25" />
+      <File FileName="DHPhoneStore/Repositories/IUserRepository.cs" />
+      <File FileName="DHPhoneStore/Program.cs" Line="22" Column="4" />
+      <File FileName="DHPhoneStore/Statements/UserStatement.xml" />
+      <File FileName="DHPhoneStore/Controllers/CategoryController.cs" />
+      <File FileName="DHPhoneStore/Controllers/AdminController.cs" Line="42" Column="56" />
+      <File FileName="DHPhoneStore/Services/IAdminService.cs" />
+      <File FileName="DHPhoneStore/Services/AdminService.cs" />
+      <File FileName="DHPhoneStore/Repositories/IAdminRepository.cs" />
+      <File FileName="DHPhoneStore/Repositories/AdminRepository.cs" />
+      <File FileName="DHPhoneStore/Statements/AdminStatement.xml" Line="45" Column="17" />
+      <File FileName="DHPhoneStore/Statements/CategoryStatement.xml" />
+      <File FileName="DHPhoneStore/Models/Admin.cs" />
+      <File FileName="DHPhoneStore/appsettings.Development.json" Line="10" Column="112" />
+      <File FileName="DHPhoneStore/appsettings.json" Line="6" Column="6" />
+      <File FileName="DHPhoneStore/DHPhoneStore.http" Line="1" Column="35" />
+      <File FileName="DHPhoneStore/Properties/launchSettings.json" Line="26" Column="41" />
+      <File FileName="DHPhoneStore/Models/Promotion.cs" Line="14" Column="6" />
+      <File FileName="DHPhoneStore/Controllers/PromotionController.cs" Line="48" Column="65" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DHPhoneStore">
+            <Node name="DHPhoneStore">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers">
+                <Node name="PromotionController.cs" selected="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.DHPhoneStore PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

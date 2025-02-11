@@ -28,4 +28,14 @@
 		DELETE FROM Promotions
 		WHERE PromotionID = @PromotionID;
 	</Statement>
+	<Statement id="add_product_to_promotion">
+		INSERT INTO ProductPromotions
+		(ProductID, PromotionID)
+		VALUES
+		(@ProductID, @PromotionID);
+	</Statement>
+	<Statement id="delete_product_to_promotion">
+		Delete from ProductPromotions
+		where PromotionID = @id;
+	</Statement>
 </Statements>

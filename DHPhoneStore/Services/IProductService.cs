@@ -14,6 +14,7 @@ namespace DHPhoneStore.Services
         Task<ResponseBase> UpdateProductAsync(Product product);
         Task<ResponseBase> DeleteProductAsync(int id);
         Task<ResponseBase> SearchAsync(int page, int pageSize, string query);
+        Task<ResponseBase> ListAddToPromotionAsync(string id);
     }
 }
 

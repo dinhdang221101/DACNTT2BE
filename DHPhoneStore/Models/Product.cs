@@ -14,6 +14,11 @@
         public int TotalCount { get; set; }
     }
 
+    public class ProductPromotion : Product
+    {
+        public int PromotionID { get; set; }
+    }
+
     public class ProductSale : Product
     {
         public int DiscountPercent { get; set; }

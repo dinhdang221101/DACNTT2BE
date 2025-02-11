@@ -13,6 +13,7 @@ namespace DHPhoneStore.Repositories
         Task<int> UpdateProductAsync(Product product);
         Task<int> DeleteProductAsync(int id);
         Task<object?> SearchAsync(int page, int pageSize, string query);
+        Task<object?> ListAddToPromotionAsync(string id);
     }
 }
 

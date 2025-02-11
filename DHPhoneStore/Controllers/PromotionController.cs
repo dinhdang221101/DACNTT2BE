@@ -1,4 +1,5 @@
-﻿using DHPhoneStore.Models;
+﻿using System.Threading.Tasks;
+using DHPhoneStore.Models;
 using DHPhoneStore.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,6 +48,13 @@ namespace DHPhoneStore.Controllers
         public async Task<IActionResult> DeletePromotion(int id)
         {
             var item = await _service.DeletePromotionAsync(id);
+            return Ok(item);
+        }
+
+        [HttpPost("AddProducts")]
+        public async Task<IActionResult> AddProducts([FromBody] AddProductsPromotion req)
+        {
+            var item = await _service.AddProductsAsync(req);
             return Ok(item);
         }
     }
