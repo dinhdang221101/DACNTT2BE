@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Statements>
+    <Statement id="report_week">
+        SELECT 
+            DAYNAME(A.OrderDate) AS DayOfWeek,
+            COUNT(DISTINCT A.OrderID) AS TotalOrders,
+            SUM(A.TotalAmount) AS TotalAmount,
+            SUM(B.Quantity) AS TotalProducts
+        FROM 
+            Orders A
+        JOIN 
+            OrderDetails B ON A.OrderID = B.OrderID
+        WHERE 
+            A.OrderDate >= CURDATE() - INTERVAL WEEKDAY(CURDATE()) DAY 
+            AND A.OrderDate &lt; CURDATE() + INTERVAL (7 - WEEKDAY(CURDATE())) DAY 
+        GROUP BY 
+            DAYOFWEEK(A.OrderDate), DAYNAME(A.OrderDate) 
+        ORDER BY 
+            DAYOFWEEK(A.OrderDate); 
+    </Statement>
+    <Statement id="top3">
+        SELECT 
+        P.ProductID,
+        P.ProductName,
+        P.ImageURL,
+        P.Price,
+        SUM(B.Quantity) AS TotalQuantity
+        FROM 
+            Orders A
+        JOIN 
+            OrderDetails B ON A.OrderID = B.OrderID
+        JOIN 
+            Products P ON B.ProductID = P.ProductID
+        WHERE 
+            A.OrderDate >= CURDATE() - INTERVAL WEEKDAY(CURDATE()) DAY 
+            AND A.OrderDate &lt; CURDATE() + INTERVAL (7 - WEEKDAY(CURDATE())) DAY 
+        GROUP BY 
+            P.ProductID, P.ProductName, P.ImageURL, P.Price
+        ORDER BY 
+            TotalQuantity DESC
+        LIMIT 3; 
+    </Statement>
+    <Statement id="get_orders">
+        SELECT * FROM Orders;
+    </Statement>
+    <Statement id="update_order">
+        UPDATE Orders
+        SET PaymentStatus = @PaymentStatus,
+        OrderStatus = @OrderStatus
+        WHERE OrderID = @OrderID;
+    </Statement>
+</Statements>

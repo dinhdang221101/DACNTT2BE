@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Statements>
+    <Statement id="get_all_category">
+        select * from Categories;
+    </Statement>
+    <Statement id="get_brand_by_category">
+        SELECT Brand FROM Products
+        WHERE CategoryID = @id
+        GROUP BY Brand;
+    </Statement>
+	<Statement id="get_category_by_id">
+		SELECT * FROM Categories
+		WHERE CategoryID = @id
+	</Statement>
+	<Statement id="post_category">
+		INSERT INTO Categories
+		(CategoryName, Description)
+		VALUES
+		(@CategoryName, @Description);
+		SELECT LAST_INSERT_ID();
+	</Statement>
+	<Statement id="update_category">
+		UPDATE Categories
+		SET
+		CategoryName = @CategoryName,
+		Description = @Description
+		WHERE
+		CategoryID = @CategoryID;
+	</Statement>
+	<Statement id="delete_category">
+		DELETE FROM Categories
+		WHERE CategoryID = @CategoryID;
+	</Statement>
+</Statements>

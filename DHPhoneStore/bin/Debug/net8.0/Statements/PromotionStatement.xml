@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Statements>
+	<Statement id="get_all_promotion">
+		SELECT * from Promotions;
+	</Statement>
+	<Statement id="get_promotion_by_id">
+		SELECT * FROM Promotions
+		WHERE PromotionID = @id
+	</Statement>
+	<Statement id="post_promotion">
+		INSERT INTO Promotions
+		(PromotionName, DiscountPercent, StartDate, EndDate)
+		VALUES
+		(@PromotionName, @DiscountPercent, @StartDate, @EndDate);
+		SELECT LAST_INSERT_ID();
+	</Statement>
+	<Statement id="update_promotion">
+		UPDATE Promotions
+		SET
+		PromotionName = @PromotionName,
+		DiscountPercent = @DiscountPercent,
+		StartDate = @StartDate,
+		EndDate = @EndDate
+		WHERE
+		PromotionID = @PromotionID;
+	</Statement>
+	<Statement id="delete_promotion">
+		DELETE FROM Promotions
+		WHERE PromotionID = @PromotionID;
+	</Statement>
+</Statements>

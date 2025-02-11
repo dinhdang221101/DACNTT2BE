@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Statements>
+    <Statement id="register_user">
+        INSERT INTO Users (FullName, Email, PasswordHash, PhoneNumber)
+        VALUES (@Name, @Email, @Password, @Phone);
+    </Statement>
+    <Statement id="login_user">
+        select UserID, FullName as Name, Email, PhoneNumber as Phone, Role, PasswordHash as password from Users where email = @Email or PhoneNumber = @Email;
+    </Statement>
+    <Statement id="add_to_cart">
+        INSERT INTO Cart (UserID, ProductID, Quantity)
+        SELECT @UserID, @ProductID, @Quantity
+        WHERE (SELECT COALESCE(SUM(Quantity), 0) FROM Cart WHERE UserID = @UserID AND ProductID = @ProductID) + @Quantity &lt;= 
+        (SELECT Stock FROM Products WHERE ProductID = @ProductID)
+			ON DUPLICATE KEY UPDATE 
+            Quantity = Quantity + VALUES(Quantity);
+    </Statement>
+    <Statement id="get_cart_user">
+        SELECT A.Quantity, B.ProductName, B.ProductID, B.Price, B.ImageURL, D.DiscountPercent  FROM Cart A
+        LEFT JOIN Products B on B.ProductID = A.ProductID
+        LEFT JOIN ProductPromotions C on C.ProductID = B.ProductID
+        LEFT JOIN Promotions D on D.PromotionID = C.PromotionID 
+        WHERE A.UserID = @UserID;
+    </Statement>
+    <Statement id="check_first_checkout">
+        SELECT ProductID, Stock
+        FROM Products 
+        WHERE ProductID = @ProductID AND Stock &lt; @Quantity
+    </Statement>
+    <Statement id="checkout">
+        START TRANSACTION;
+        INSERT INTO Orders (UserID, TotalAmount, PaymentMethodID, Email, Name, Address, Phone)
+        VALUES (@UserID, @TotalAmount, @PaymentMethod, @Email, @Name, @Address, @Phone);
+        SELECT LAST_INSERT_ID() AS OrderID;
+        COMMIT;
+    </Statement>
+    <Statement id="add_to_order_detail">
+        INSERT INTO OrderDetails (OrderID, ProductID, Quantity, Price)
+        VALUES (@OrderID, @ProductID, @Quantity, @Price);
+    </Statement>
+    <Statement id="order_history">
+        SELECT A.OrderID, A.Email, A.Name, A.Address, A.Phone, A.TotalAmount, A.OrderDate, A.OrderStatus, A.PaymentStatus, A.PaymentTransactionID, A.PaymentDate, A.PaymentMethodID, C.ProductName, C.ImageURL, B.ProductID, B.Quantity, B.Price, D.Rating FROM Orders A
+        LEFT JOIN OrderDetails B on B.OrderID = A.OrderID
+        LEFT JOIN Products C on C.ProductID = B.ProductID
+        LEFT JOIN Reviews D on D.ProductID = C.ProductID AND D.OrderID = B.OrderID  AND D.UserID = A.UserID
+        WHERE A.UserID = @UserID
+    </Statement>
+    <Statement id="delete_from_cart">
+        DELETE FROM Cart
+        WHERE UserID = @UserID AND ProductID = @ProductID;
+    </Statement>
+    <Statement id="review_product">
+        INSERT INTO Reviews (UserID, OrderID, ProductID, Rating, Comment)
+        VALUES (@UserID, @OrderID, @ProductID, @Rating, @Comment);
+    </Statement>
+    <Statement id="update_status_order">
+        UPDATE Orders
+        SET PaymentStatus = @PaymentStatus,
+        PaymentTransactionID = @PaymentTransactionID,
+        PaymentDate = CURRENT_TIMESTAMP(),
+        OrderStatus = @OrderStatus
+        WHERE OrderID = @OrderID AND PaymentTransactionID IS NULL;
+    </Statement>
+	<Statement id="post_user">
+		INSERT INTO Users
+		(FullName, Email, PasswordHash, PhoneNumber, Role)
+		VALUES
+		(@Name, @Email, @Password, @Phone, @Role);
+		SELECT LAST_INSERT_ID();
+	</Statement>
+	<Statement id="update_user">
+		UPDATE Users
+		SET
+		FullName = @Name,
+		Email = @Email,
+		PasswordHash = @Password,
+		PhoneNumber = @Phone,
+		Role = @Role
+		WHERE
+		UserID = @UserID;
+	</Statement>
+	<Statement id="delete_user">
+		DELETE FROM Users
+		WHERE UserID = @UserID;
+	</Statement>
+	<Statement id="get_user_by_id">
+		SELECT UserID, FullName AS Name, Email, PhoneNumber AS Phone, Role FROM Users
+		WHERE UserID = @id
+	</Statement>
+	<Statement id="get_all_user">
+		SELECT UserID, FullName AS Name, Email, PhoneNumber AS Phone, Role FROM Users;
+	</Statement>
+</Statements>

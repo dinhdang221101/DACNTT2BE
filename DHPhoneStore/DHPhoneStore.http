@@ -1,0 +1,7 @@
+﻿@DHPhoneStore_HostAddress = http://localhost:5095
+
+GET {{DHPhoneStore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+

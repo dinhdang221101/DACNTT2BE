@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Statements>
+    <Statement id="get_all_product">
+        select * from Products;
+    </Statement>
+    <Statement id="get_product_by_category">
+        SELECT 
+            (SELECT COUNT(*) FROM Products WHERE CategoryID = @id @brand) AS TotalCount,
+            p.*, C.DiscountPercent
+        FROM Products p
+        LEFT JOIN ProductPromotions A on A.ProductID = p.ProductID
+        LEFT JOIN Promotions C on C.PromotionID = A.PromotionID 
+        WHERE p.CategoryID = @id @brand
+        @sortOrder
+        LIMIT @page, @pageSize;
+    </Statement>
+    <Statement id="get_product_sale">
+        SELECT (
+        SELECT COUNT(*) FROM ProductPromotions A
+        LEFT JOIN Promotions C on C.PromotionID = A.PromotionID
+        WHERE CURRENT_TIMESTAMP() &gt;= C.StartDate AND CURRENT_TIMESTAMP &lt;= C.EndDate) AS TotalCount, P.* FROM (SELECT B.*, C.DiscountPercent FROM
+        ProductPromotions A
+        LEFT JOIN Products B on B.ProductID = A.ProductID
+        LEFT JOIN Promotions C on C.PromotionID = A.PromotionID 
+        WHERE CURRENT_TIMESTAMP() &gt;= C.StartDate AND CURRENT_TIMESTAMP &lt;= C.EndDate LIMIT @page, @pageSize) P
+    </Statement>
+    <Statement id="get_by_id">
+        SELECT 
+        p.*, C.DiscountPercent
+        FROM Products p
+        LEFT JOIN ProductPromotions A on A.ProductID = p.ProductID
+        LEFT JOIN Promotions C on C.PromotionID = A.PromotionID 
+        WHERE p.ProductID = @id;
+    </Statement>
+     <Statement id="get_reviews_product">
+        SELECT A.*, B.FullName FROM Reviews A
+        LEFT JOIN Users B ON B.UserID = A.UserID
+        WHERE A.ProductID = @id
+        ORDER BY A.Rating DESC;
+    </Statement>
+	<Statement id="post_product">
+		INSERT INTO Products
+		(ProductName, CategoryID, Brand, Price, Stock, Description, ImageURL)
+		VALUES
+		(@ProductName, @CategoryID, @Brand, @Price, @Stock, @Description, @ImageURL);
+		SELECT LAST_INSERT_ID();
+	</Statement>
+	<Statement id="update_product">
+		UPDATE Products
+		SET
+		ProductName = @ProductName,
+		CategoryID = @CategoryID,
+		Brand = @Brand,
+		Price = @Price,
+		Stock = @Stock,
+		Description = @Description,
+		ImageURL = @ImageURL
+		WHERE
+		ProductID = @ProductID;
+	</Statement>
+	<Statement id="delete_product">
+		DELETE FROM Products
+		WHERE ProductID = @ProductID;
+	</Statement>
+    <Statement id="get_product_by_search">
+        SELECT (
+        SELECT count(*)
+        FROM Products
+        WHERE productName LIKE CONCAT('%', @query, '%')) AS TotalCount, P.*, C.DiscountPercent FROM Products P
+        LEFT JOIN ProductPromotions A on A.ProductID = P.ProductID
+        LEFT JOIN Promotions C on C.PromotionID = A.PromotionID 
+        WHERE productName LIKE CONCAT('%', @query, '%')
+        LIMIT @page, @pageSize;
+    </Statement>
+</Statements>

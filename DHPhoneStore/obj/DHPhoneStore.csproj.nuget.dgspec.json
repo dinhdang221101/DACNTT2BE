@@ -1,0 +1,95 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/dinhdinhdang/Desktop/DACNTT2/DACNTT2/dhphonestore/backend/DHPhoneStore/DHPhoneStore.csproj": {}
+  },
+  "projects": {
+    "/Users/dinhdinhdang/Desktop/DACNTT2/DACNTT2/dhphonestore/backend/DHPhoneStore/DHPhoneStore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dinhdinhdang/Desktop/DACNTT2/DACNTT2/dhphonestore/backend/DHPhoneStore/DHPhoneStore.csproj",
+        "projectName": "DHPhoneStore",
+        "projectPath": "/Users/dinhdinhdang/Desktop/DACNTT2/DACNTT2/dhphonestore/backend/DHPhoneStore/DHPhoneStore.csproj",
+        "packagesPath": "/Users/dinhdinhdang/.nuget/packages/",
+        "outputPath": "/Users/dinhdinhdang/Desktop/DACNTT2/DACNTT2/dhphonestore/backend/DHPhoneStore/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dinhdinhdang/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.blueocean.net.vn/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.35, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
