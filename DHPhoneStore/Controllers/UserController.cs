@@ -125,16 +125,16 @@ namespace DHPhoneStore.Controllers
                     { "vnp_Command", "pay" },
                     { "vnp_TmnCode", MerchantId },
                     { "vnp_Amount", (request.TotalAmount * 100).ToString() }, 
-                    { "vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss") },
+                    { "vnp_CreateDate", DateTime.Now.AddHours(12).ToString("yyyyMMddHHmmss") },
                     { "vnp_CurrCode", "VND" },
                     { "vnp_IpAddr", "127.0.0.1" },
                     { "vnp_Locale", "vn" },
                     { "vnp_OrderInfo", "thanhtoan" },
                     { "vnp_OrderType", "other" },
-                    { "vnp_ReturnUrl", "http://localhost:5173/payment-result" },
-                    //{ "vnp_ReturnUrl", "https://dacntt2-u7sm.onrender.com/payment-result" },
-                    { "vnp_ExpireDate", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss") },
-                    { "vnp_TxnRef", request.OrderID.ToString() + "_" + DateTime.Now.ToString("yyyyMMddHHmmss")},
+                    //{ "vnp_ReturnUrl", "http://localhost:5173/payment-result" },
+                    { "vnp_ReturnUrl", "https://dacntt2-u7sm.onrender.com/payment-result" },
+                    { "vnp_ExpireDate", DateTime.Now.AddHours(12).AddMinutes(10).ToString("yyyyMMddHHmmss") },
+                    { "vnp_TxnRef", request.OrderID.ToString() + "_" + DateTime.Now.AddHours(12).ToString("yyyyMMddHHmmss")},
                 };
                 string hash = string.Join("&", vnpParams.Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
                 string secureHash = ComputeHmacSha512(SecretKey, hash);
